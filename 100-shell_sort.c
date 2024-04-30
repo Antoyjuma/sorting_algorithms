@@ -1,40 +1,34 @@
 #include "sort.h"
 
 /**
- * shell_sort - Sorts an array using the shell sort algorithm.
- * @array: The array to sort.
- * @size: The length of the array.
- *
- * Description: This function implements the shell sort algorithm to sort
- *              an array of integers in ascending order. The algorithm
- *              sorts the array by comparing elements that are a certain
- *              distance apart and gradually reducing the gap until all
- *              elements are compared and the array is sorted.
+ * shell_sort - sory array using quick sort method
+ * @array: input array
+ * @size: input size of array
  */
 void shell_sort(int *array, size_t size)
 {
-	int i, j, tmp, gap = 0;
+	size_t gap = 1, i, j;
+	int tmp;
 
-	if ((array == NULL) || (size < 2))
+	if (size == 0 || size == 1)
 		return;
-	/* Calculate initial gap using Knuth's sequence */
-	while (gap <= ((int)size / 3))
-		gap = (gap * 3) + 1;
-	for (; gap > 0; )
+	while (gap < size)
+		gap = gap * 3 + 1;
+	gap = (gap - 1) / 3;
+	while (gap > 0)
 	{
-		/* Perform insertion sort with the current gap */
-		for (i = gap; i < (int)size; i++)
+		i = gap;
+		while (i < size)
 		{
 			tmp = array[i];
-			for (j = i; (j >= gap) && (array[j - gap] > tmp); j -= gap)
+			for (j = i; j >= gap && array[j - gap] > tmp; j -= gap)
 			{
-				/* Shift elements to the right until correct position is found */
 				array[j] = array[j - gap];
 			}
 			array[j] = tmp;
+			i++;
 		}
-		gap = (gap - 1) / 3;
-		/* Print the current state of the array */
 		print_array(array, size);
+		gap = (gap - 1) / 3;
 	}
 }
