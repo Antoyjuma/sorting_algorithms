@@ -2,22 +2,35 @@
 #include "sort.h"
 
 /**
- * print_list - Prints a list of integers
+ * print_list - Prints a list of integers.
+ * @list: The list to be printed.
  *
- * @list: The list to be printed
+ * Description:
+ * This function takes a linked list of integers as a parameter and prints the
+ * elements of the list. The elements are separated by commas, and a newline
+ * character is printed at the end.
  */
 void print_list(const listint_t *list)
 {
-    int i;
+	int i = 0;
 
-    i = 0;
-    while (list)
-    {
-        if (i > 0)
-            printf(", ");
-        printf("%d", list->n);
-        ++i;
-        list = list->next;
-    }
-    printf("\n");
+	/* Iterate through the list and print each element */
+	while (list != NULL)
+	{
+		/* Print a comma and space before each element (except the first one) */
+		if (i > 0)
+			printf(", ");
+
+		/* Print the current element */
+		printf("%d", list->n);
+
+		/* Move to the next node */
+		list = list->next;
+
+		/* Increment the counter */
+		++i;
+	}
+
+	/* Print a newline character at the end */
+	printf("\n");
 }

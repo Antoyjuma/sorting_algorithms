@@ -1,81 +1,105 @@
+
+/*
+ * File_Name: 3-quick_sort.c
+ * Created: 29th June, 2023
+ * Author: David James Taiye (Official0mega)
+ * Size_Of_File: Undefined
+ * Project_Title: sorting_algorithms
+ * Status: Submitted.!
+ */
+
 #include "sort.h"
 
 /**
- * quick_sort - partitions sorts by half
- * @array: the array
- * @size: size of length
- * Return: void
+ * swap_items - Swaps two items in an array.
+ * @array: The array to modify.
+ * @l: The index of the left item.
+ * @r: The index of the right item.
+ *
+ * Description:
+ * This function swaps two items in an array by exchanging their values.
+ */
+void swap_items(int *array, size_t l, size_t r)
+{
+	int tmp;
+
+	if (array != NULL)
+	{
+		tmp = array[l];
+		array[l] = array[r];
+		array[r] = tmp;
+	}
+}
+
+/**
+ * quick_sort_range_lomuto - Sorts a sub-array of an array using the
+ *                            quicksort algorithm and Lomuto's partition scheme
+ * @array: The array containing the sub-array.
+ * @low: The starting position of the sub-array.
+ * @high: The ending position of the sub-array.
+ * @size: The length of the array.
+ *
+ * Description: This function implements the quicksort algorithm with Lomuto's
+ *              partition scheme to sort a sub-array of an array. It selects
+ *              a pivot element from the sub-array, partitions the sub-array
+ *              around the pivot, and recursively applies the algorithm to the
+ *              left and right partitions.
+ */
+void quick_sort_range_lomuto(int *array, size_t low, size_t high, size_t size)
+{
+	size_t k, i;
+	int pivot;
+
+	if ((low >= high) || (array == NULL))
+		return;
+	pivot = array[high];
+	k = low;
+	for (i = low; i < high; i++)
+	{
+		if (array[i] <= pivot)
+		{
+			if (k != i)
+			{
+				/* Swap elements and print the current state of the array */
+				swap_items(array, k, i);
+				print_array(array, size);
+			}
+			k++;
+		}
+	}
+	if (k != high)
+	{
+		/*
+		 * Move the pivot element to its final position and print the
+		 * current state of the array
+		 */
+		swap_items(array, k, high);
+		print_array(array, size);
+	}
+	if (k - low > 1)
+		quick_sort_range_lomuto(array, low, k - 1, size);
+	if (high - k > 1)
+		quick_sort_range_lomuto(array, k + 1, high, size);
+}
+
+/**
+ * quick_sort - Sorts an array of integers in ascending order
+ *              using the quicksort algorithm and Lomuto's partition scheme.
+ * @array: The array to sort.
+ * @size: The number of elements in the array.
+ *
+ * Description: This function applies the quicksort algorithm with Lomuto's
+ *              partition scheme to sort an array of integers
+ *              in ascending order.
+ *              It partitions the array around a pivot element and recursively
+ *              sorts the left and right partitions until
+ *              the entire array is sorted.
  */
 void quick_sort(int *array, size_t size)
 {
-	if (size < 2)
-		return;
-
-	_qsort(array, 0, size - 1, size);
-}
-
-/**
- * _qsort - recursively calls itself to move left and right
- * @array: the array
- * @left: left pointer
- * @right: right pointer
- * @size: size of length
- * Return: void
- */
-void _qsort(int *array, int left, int right, size_t size)
-{
-	int index = partition(array, left, right, size);
-
-	if (left >= right)
-		return;
-
-	_qsort(array, left, index - 1, size);
-	_qsort(array, index + 1, right, size);
-}
-
-/**
- * partition - partition sorts by pivot point
- * @array: the array
- * @left: left pointer
- * @right: right pointer
- * @size: size of array length
- * Return: void
- */
-size_t partition(int *array, int left, int right, size_t size)
-{
-	int pivot = array[right];
-	int i = left, j = 0;
-
-	for (j = left; j < right; j++)
+	if (array != NULL)
 	{
-		if (array[j] < pivot)
-		{
-			if (i != j && array[i] != array[j])
-			{
-				swap(array, i, j);
-				print_array(array, size);
-			}
-			i++;
-		}
+		/* Call the helper function to perform quicksort on the entire array */
+		quick_sort_range_lomuto(array, 0, size - 1, size);
 	}
-	if (i != right && array[i] != array[j])
-	{
-		swap(array, i, right);
-		print_array(array, size);
-	}
-	return (i);
-}
-
-/**
- * swap - swaps two given indexes
- * @array: the array
- * @left: left pointer
- * @right: right pointer
- * Return: void
- */
-void swap(int *array, int left, int right)
-{
-	array[left] += array[right];
-	array[right] = array[left] - array[right];
-	array[left] -= array[right];
 }

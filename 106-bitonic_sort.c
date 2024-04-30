@@ -1,3 +1,13 @@
+/*
+ * File_Name: 106-bitonic_sort.c
+ * Created: 29th June, 2023
+ * Author: David James Taiye (Official0mega)
+ * Size_Of_File: Undefined
+ * Project_Title: sorting_algorithms
+ * Status: Submitted.!
+ */
+
+
 #include "sort.h"
 
 /**
