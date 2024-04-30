@@ -1,41 +1,39 @@
 #include "sort.h"
 
 /**
- * swap_int - swaps two elements in an array
- * @a: the first element
- * @b: the second element
+ * selection_sort - swaps in order by comparing from marker
+ * @array: the array
+ * @size: array length size
+ * Return: void
  */
-
-void swap_int(int *a, int *b)
-{
-	int temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-/**
- * selection_sort - sort an array of intergers in ascending order
- * uisng the selection sort algorithm
- * @array: the array to be sorted
- * @size: the size of the array
- */
-
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j, min_index;
+	size_t i = 0, walker = 0, to_swap = 0;
+	int to_comp = 0;
+
+	if (size < 2)
+		return;
 
 	for (i = 0; i < size - 1; i++)
 	{
-		min_index = i;
-
-		for (j = i + 1; j < size; j++)
-			if (array[j] < array[min_index])
-				min_index = j;
-		if (min_index != i)
+		to_comp = array[i];
+		to_swap = i;
+		for (walker = i; walker < size; walker++)
 		{
-			swap_int(&array[min_index], &array[i]);
+			if (array[walker] < to_comp)
+			{
+				/* Setting index to swap*/
+				to_swap = walker;
+				/* Setting new minimum */
+				to_comp = array[walker];
+			}
+		}
+		/* No match found means these are equal */
+		if (to_swap != i)
+		{
+			array[i] += array[to_swap];
+			array[to_swap] = array[i] - array[to_swap];
+			array[i] -= array[to_swap];
 			print_array(array, size);
 		}
 	}

@@ -1,51 +1,42 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - sorts a doubly linked list of integers
- * in ascending order using the Insertion sort algorithm
- * @list: double linked llist
+ * insertion_sort_list - sorts by the marker of array
+ * @list: dll, a listint type
+ * Return: void
  */
-
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr, *prevprev, *prevv, *curr1, *currnext;
+	listint_t *temp = NULL, *mark = NULL;
 
-	if (list == NULL)
+	if ((*list)->next == NULL || list == NULL || (*list) == NULL)
 		return;
 
-	curr = *list;
+	/* back tracking from marker - editor */
+	temp = *list;
 
-	while (curr)
+	/* marker point in the array */
+	mark = *list;
+
+	while (mark != NULL)
 	{
-		if (curr->prev && curr->prev->n > curr->n)
+		mark = mark->next;
+		/* checks compare from the marker to the start */
+		while (temp->prev && (temp->n < temp->prev->n))
 		{
-			/*Store the necessary pointers for swapping*/
-			prevprev = curr->prev->prev;
-			prevv = curr->prev;
-			curr1 = curr;
-			currnext = curr->next;
+			temp->prev->next = temp->next;
+			if (temp->next != NULL)
+				temp->next->prev = temp->prev;
 
-			/* Adjust the pointers to swap the nodes*/
-			prevv->next = currnext;
-
-			if (currnext)
-				currnext->prev = prevv;
-
-			curr1->prev = prevprev;
-			curr1->next = prevv;
-
-			if (prevprev)
-				prevprev->next = curr1;
-
+			temp->next = temp->prev;
+			temp->prev = temp->next->prev;
+			if (temp->prev != NULL)
+				temp->prev->next = temp;
 			else
-				*list = curr1;
-
-			prevv->prev = curr1;
-			curr = *list;
+				*list = temp;
+			temp->next->prev = temp;
 			print_list(*list);
-			continue; /*Continue to the next iteration*/
 		}
-		else
-			curr = curr->next;
+		temp = mark;
 	}
 }
