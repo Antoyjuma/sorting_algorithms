@@ -1,12 +1,3 @@
-/*
- * File_Name: 2-selection_sort.c
- * Created: 29th June, 2023
- * Author: David James Taiye (Official0mega)
- * Size_Of_File: Undefined
- * Project_Title: sorting_algorithms
- * Status: Submitted.!
- */
-
 #include "sort.h"
 
 /**
@@ -14,9 +5,6 @@
  * @array: The array to modify.
  * @l: The index of the left item.
  * @r: The index of the right item.
- *
- * Description: This function swaps two items in an array by
- *              exchanging their values.
  */
 void swap_items(int *array, size_t l, size_t r)
 {
@@ -31,15 +19,9 @@ void swap_items(int *array, size_t l, size_t r)
 }
 
 /**
- * selection_sort - Sorts an array of integers in ascending order
- *                  using the selection sort algorithm.
+ * selection_sort - Sorts an array using the selection sort algorithm.
  * @array: The array to sort.
- * @size: The number of elements in the array.
- *
- * Description: This function implements the selection sort algorithm
- *              to sort an array of integers in ascending order. It
- *              repeatedly finds the minimum element from the unsorted
- *              portion of the array and places it at the beginning.
+ * @size: The length of the array.
  */
 void selection_sort(int *array, size_t size)
 {
@@ -59,13 +41,9 @@ void selection_sort(int *array, size_t size)
 			}
 			if (i != low_idx)
 			{
-				/* Swap the minimum element with the current element */
 				swap_items(array, i, low_idx);
-
-				/* Print the current state of the array */
 				print_array(array, size);
 			}
 		}
 	}
 }
-

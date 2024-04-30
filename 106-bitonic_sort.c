@@ -1,13 +1,3 @@
-/*
- * File_Name: 106-bitonic_sort.c
- * Created: 29th June, 2023
- * Author: David James Taiye (Official0mega)
- * Size_Of_File: Undefined
- * Project_Title: sorting_algorithms
- * Status: Submitted.!
- */
-
-
 #include "sort.h"
 
 /**
@@ -15,9 +5,6 @@
  * @array: The array to modify.
  * @l: The index of the left item.
  * @r: The index of the right item.
- *
- * Description: This function swaps the values at the specified indices
- *              in the given array.
  */
 void swap_items(int *array, size_t l, size_t r)
 {
@@ -38,12 +25,9 @@ void swap_items(int *array, size_t l, size_t r)
  * @low: The starting position of the sub-array.
  * @n: The length of the sub-array.
  * @ascending: A flag specifying the direction of the items in this sub-array.
- *
- * Description: This function performs a bitonic merge on the specified sub-array
- *              of the array. It merges the items in the sub-array based on the
- *              given order (ascending or descending).
  */
-void bitonic_merge(int *array, size_t size, size_t low, size_t n, char ascending)
+void bitonic_merge(int *array, size_t size,
+									 size_t low, size_t n, char ascending)
 {
 	size_t i, m;
 
@@ -69,12 +53,9 @@ void bitonic_merge(int *array, size_t size, size_t low, size_t n, char ascending
  * @low: The starting position of the sub-array.
  * @n: The length of the sub-array.
  * @ascending: A flag specifying the direction of the items in this sub-array.
- *
- * Description: This function recursively splits the sub-array into two halves,
- *              sorts them in the specified order (ascending or descending),
- *              and then performs a bitonic merge to combine them.
  */
-void bitonic_sort_split(int *array, size_t size, size_t low, size_t n, char ascending)
+void bitonic_sort_split(int *array, size_t size,
+												size_t low, size_t n, char ascending)
 {
 	size_t m;
 
@@ -97,10 +78,6 @@ void bitonic_sort_split(int *array, size_t size, size_t low, size_t n, char asce
  * bitonic_sort - Sorts an array using the bitonic sort algorithm.
  * @array: The array to sort.
  * @size: The length of the array (should be a power of 2).
- *
- * Description: This function sorts the given array using the bitonic sort algorithm.
- *              It splits the array into smaller sub-arrays, sorts them in ascending
- *              order, and then performs bitonic merges to combine the sorted sub-arrays.
  */
 void bitonic_sort(int *array, size_t size)
 {

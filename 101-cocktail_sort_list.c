@@ -1,12 +1,3 @@
-/*
- * File_Name: 101-cocktail_sort_list.c
- * Created: 29th June, 2023
- * Author: David James Taiye (Official0mega)
- * Size_Of_File: Undefined
- * Project_Title: sorting_algorithms
- * Status: Submitted.!
- */
-
 #include "sort.h"
 
 /**
@@ -14,9 +5,6 @@
  * @list: A pointer to the head of the linked list.
  * @l: The left item to swap.
  * @r: The right item to swap.
- *
- * Description: This function swaps two nodes in a doubly linked list.
- *              It updates the links between the nodes accordingly.
  */
 void swap_nodes(listint_t **list, listint_t *l, listint_t *r)
 {
@@ -64,9 +52,6 @@ void swap_nodes(listint_t **list, listint_t *l, listint_t *r)
  * @list: A pointer to the head of the linked list.
  *
  * Return: The tail of the linked list, otherwise NULL.
- *
- * Description: This function traverses the linked list from the head
- *              to the tail and returns the tail node of the list.
  */
 listint_t *get_tail(listint_t **list)
 {
@@ -85,13 +70,6 @@ listint_t *get_tail(listint_t **list)
  * cocktail_sort_list - Sorts a doubly linked list
  * using the cocktail shaker sort algorithm.
  * @list: The list to be sorted.
- *
- * Description: This function implements the cocktail shaker sort algorithm
- *              to sort a doubly linked list in ascending order. The algorithm
- *              works by iterating through the list in both directions,
- *              swapping adjacent elements if they are out of order. This
- *              process is repeated until no more swaps are needed, indicating
- *              that the list is sorted.
  */
 void cocktail_sort_list(listint_t **list)
 {
